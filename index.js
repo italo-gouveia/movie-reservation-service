@@ -8,8 +8,32 @@ import { authenticate, authorize } from './utils/authMiddleware';
 import { info, warn, error as _error } from '../logger'; // Import the logger
 import process from 'process';
 import { v4 as uuidv4 } from 'uuid'; // For generating request IDs
+import rateLimit from 'express-rate-limit';
+import RedisStore from 'rate-limit-redis';
+import redis from 'redis';
 
 const app = express();
+
+// Configure Redis client as needed
+const redisClient = redis.createClient({
+    host: 'redis',
+    port: 6379,
+});
+
+// Configure rate limit
+const apiLimiter = rateLimit({
+    store: new RedisStore({
+        client: redisClient,
+        expiry: 15 * 60, // 15 minutes
+    }),
+    windowMs: 15 * 60 * 1000,
+    max: 100,
+    message: 'Too many requests from this IP, please try again later.',
+    headers: true,
+});
+
+// Apply rate limiting to all API routes
+app.use('/api/', apiLimiter);
 
 // Middleware setup
 app.use(helmet()); // Adds security headers
@@ -65,7 +89,27 @@ process.on('unhandledRejection', (reason, promise) => {
   process.exit(1); // Exit the process with an error code
 });
 
+// Graceful shutdown
+const shutdown = (signal) => {
+  return async () => {
+    info(`Received ${signal}. Closing HTTP server gracefully...`);
+    server.close(() => {
+      info('HTTP server closed.');
+      process.exit(0);
+    });
+
+    // Force shutdown after a timeout
+    setTimeout(() => {
+      info('Forcefully shutting down...');
+      process.exit(1);
+    }, 10 * 1000);
+  };
+};
+
+process.on('SIGTERM', shutdown('SIGTERM'));
+process.on('SIGINT', shutdown('SIGINT'));
+
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   info(`Server running on port ${PORT}`);
 });
