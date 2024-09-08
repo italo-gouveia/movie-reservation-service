@@ -1,5 +1,5 @@
 import { hashSync, compareSync } from 'bcryptjs';
-import { sign } from 'jsonwebtoken';
+import { sign, verify } from 'jsonwebtoken';
 import process from 'process';
 import { info, warn, error as _error } from '../logger'; // Import the logger
 
@@ -44,10 +44,55 @@ const generateToken = (user) => {
         _error('Error generating token', {
             message: error.message,
             stack: error.stack,
-            context: { userId: user.id }, // Log user ID (but not the token itself) for debugging
+            context: { userId: user.id },
         });
         throw new Error('Error generating token');
     }
 };
 
-export default { hashPassword, comparePassword, generateToken };
+const generateRefreshToken = (user) => {
+    try {
+        const refreshToken = sign({ id: user.id }, process.env.JWT_REFRESH_SECRET, {
+            expiresIn: '7d',
+        });
+        info('Refresh token generated successfully', { context: { userId: user.id } });
+        return refreshToken;
+    } catch (error) {
+        _error('Error generating refresh token', {
+            message: error.message,
+            stack: error.stack,
+            context: { userId: user.id },
+        });
+        throw new Error('Error generating refresh token');
+    }
+};
+
+const verifyToken = (token) => {
+    try {
+        const decoded = verify(token, process.env.JWT_SECRET);
+        info('Token verified successfully', { decoded });
+        return decoded;
+    } catch (err) {
+        _error('Token verification error', {
+            message: err.message,
+            stack: err.stack,
+        });
+        throw new Error('Invalid token');
+    }
+};
+
+const verifyRefreshToken = (token) => {
+    try {
+        const decoded = verify(token, process.env.JWT_REFRESH_SECRET);
+        info('Refresh token verified successfully', { decoded });
+        return decoded;
+    } catch (err) {
+        _error('Refresh token verification error', {
+            message: err.message,
+            stack: err.stack,
+        });
+        throw new Error('Invalid refresh token');
+    }
+};
+
+export default { hashPassword, comparePassword, generateToken, generateRefreshToken, verifyToken, verifyRefreshToken };

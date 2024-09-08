@@ -1,11 +1,10 @@
-import { User } from '../models';
 import authUtils from '../utils/authUtils';
-const { hashPassword, generateToken } = authUtils;
-import { info, warn, error as _error } from '../logger'; // Import the logger
+import { User } from '../models';
+import { info, warn, error as _error } from '../logger';
 
 const createUser = async (username, password, role) => {
     try {
-        const hashedPassword = hashPassword(password);
+        const hashedPassword = authUtils.hashPassword(password);
         const user = await User.create({
             username,
             password: hashedPassword,
@@ -21,8 +20,9 @@ const createUser = async (username, password, role) => {
         _error('Error creating user', {
             message: error.message,
             stack: error.stack,
+            context: { username }
         });
-        throw new Error('Error creating user'); // Ensure this is handled by the middleware
+        throw new Error('Error creating user');
     }
 };
 
@@ -42,9 +42,10 @@ const findUserByUsername = async (username) => {
         _error('Error finding user', {
             message: error.message,
             stack: error.stack,
+            context: { username }
         });
-        throw new Error('Error finding user'); // Ensure this is handled by the middleware
+        throw new Error('Error finding user');
     }
 };
 
-export default { createUser, findUserByUsername, generateToken };
+export default { createUser, findUserByUsername };

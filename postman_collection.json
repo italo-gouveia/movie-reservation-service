@@ -364,7 +364,49 @@
 							"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6InVzZXIiLCJpYXQiOjE3MjU3NDY5NDQsImV4cCI6MTcyNTc1NDE0NH0.5pk6UoCrE5W_1t5OxYIA7PwxMPRWQT1vX8jhO0PCZis\"\n}"
 						}
 					]
-				}
+				},
+                {
+                    "name": "Refresh Token",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"refreshToken\":\"<your_refresh_token_here>\"}"
+                        },
+                        "url": {
+                            "raw": "{{baseUrl}}/refresh-token",
+                            "protocol": "http",
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "port": "3000",
+                            "path": [
+                                "refresh-token"
+                            ]
+                        }
+                    },
+                    "event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Status code is 200', function () {\n    pm.response.to.have.status(200);\n});",
+									"pm.test('Token is returned', function () {\n    pm.response.to.have.jsonBody('refreshToken');\n});",
+									"pm.environment.set('userToken', pm.response.json().token);"
+								]
+							}
+						}
+					],
+                    "response": []
+                }
 			]
 		},
 		{
