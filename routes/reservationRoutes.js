@@ -1,18 +1,12 @@
 import { Router } from 'express';
-const router = Router();
 import reservationController from '../controllers/reservationController';
-import authenticate from '../utils/authMiddleware';
+import { authenticate } from '../utils/authMiddleware'; // Ensure you're importing the named export correctly
 
-// Apply authentication middleware
-router.use(authenticate);
+const router = Router();
 
-// Route to reserve seats
-router.post('/reserve', reservationController.reserveSeats);
-
-// Route to get all reservations for the logged-in user
-router.get('/', reservationController.getReservations);
-
-// Route to cancel a reservation by ID
-router.delete('/:id', reservationController.cancelReservation);
+// Apply authentication middleware to specific routes
+router.post('/reserve', authenticate, reservationController.reserveSeats);
+router.get('/', authenticate, reservationController.getReservations);
+router.delete('/:id', authenticate, reservationController.cancelReservation);
 
 export default router;

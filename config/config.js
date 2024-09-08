@@ -3,27 +3,17 @@ dotenv.config();
 
 import process from 'process';
 
-export const development = {
-	username: process.env.DB_USER,
-	password: process.env.DB_PASSWORD,
-	database: process.env.DB_NAME,
-	host: process.env.DB_HOST || 'localhost',
-	port: process.env.DB_PORT, // Ensure this is included
-	dialect: 'postgres',
+const getConfig = (envPrefix) => {
+    return {
+        username: process.env[`${envPrefix}_DB_USER`] || 'defaultUser',
+        password: process.env[`${envPrefix}_DB_PASSWORD`] || 'defaultPassword',
+        database: process.env[`${envPrefix}_DB_NAME`] || 'defaultDatabase',
+        host: process.env[`${envPrefix}_DB_HOST`] || 'localhost',
+        port: parseInt(process.env[`${envPrefix}_DB_PORT`] || '5432', 10),
+        dialect: 'postgres',
+    };
 };
-export const test = {
-	username: process.env.TEST_DB_USER,
-	password: process.env.TEST_DB_PASSWORD,
-	database: process.env.TEST_DB_NAME,
-	host: process.env.TEST_DB_HOST,
-	port: process.env.TEST_DB_PORT, // Ensure this is included
-	dialect: 'postgres',
-};
-export const production = {
-	username: process.env.PROD_DB_USER,
-	password: process.env.PROD_DB_PASSWORD,
-	database: process.env.PROD_DB_NAME,
-	host: process.env.PROD_DB_HOST,
-	port: process.env.PROD_DB_PORT, // Ensure this is included
-	dialect: 'postgres',
-};
+
+export const development = getConfig('DEV');
+export const test = getConfig('TEST');
+export const production = getConfig('PROD');
