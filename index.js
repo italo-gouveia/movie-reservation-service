@@ -11,6 +11,7 @@ import { v4 as uuidv4 } from 'uuid'; // For generating request IDs
 import rateLimit from 'express-rate-limit';
 import RedisStore from 'rate-limit-redis';
 import redis from 'redis';
+import sanitizeInputs from './middleware/sanitizeInputs'; // Import your middleware
 
 const app = express();
 
@@ -33,10 +34,23 @@ const apiLimiter = rateLimit({
 });
 
 // Apply rate limiting to all API routes
-app.use('/api/', apiLimiter);
+app.use(apiLimiter);
+
+// Apply sanitization middleware globally or on specific routes
+app.use(sanitizeInputs);
 
 // Middleware setup
 app.use(helmet()); // Adds security headers
+app.use(
+    helmet.contentSecurityPolicy({
+      directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", "https://trusted-cdn.com"],
+        // Add other directives as needed
+      },
+    })
+);
+
 app.use(json());
 
 // Custom request logging middleware
