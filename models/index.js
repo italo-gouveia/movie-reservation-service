@@ -6,6 +6,10 @@ import Reservation from './reservation';
 import Movie from './movie';
 
 // Define associations
+
+/**
+ * Defines the relationships between models.
+ */
 User.hasMany(Reservation, { foreignKey: 'user_id' });
 Reservation.belongsTo(User, { foreignKey: 'user_id' });
 
@@ -21,4 +25,9 @@ Reservation.belongsTo(Seat, { as: 'seat', foreignKey: 'seat_id' });
 Movie.hasMany(Showtime, { foreignKey: 'movie_id' });
 Showtime.belongsTo(Movie, { foreignKey: 'movie_id' });
 
+/**
+ * Export all models and the sequelize instance.
+ *
+ * @type {{ User: Model, Showtime: Model, Seat: Model, Reservation: Model, Movie: Model, sequelize: Sequelize }}
+ */
 export default { User, Showtime, Seat, Reservation, Movie, sequelize };

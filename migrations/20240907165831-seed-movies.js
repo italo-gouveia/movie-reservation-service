@@ -1,6 +1,10 @@
 'use strict';
 
-/** @type {import('sequelize').Migration} */
+/**
+ * Seed the `Movies` table with initial data.
+ *
+ * @type {import('sequelize').Migration}
+ */
 export async function up(queryInterface) {
 	await queryInterface.bulkInsert(
 		'Movies',
@@ -27,6 +31,12 @@ export async function up(queryInterface) {
 		{}
 	);
 }
+
+/**
+ * Revert the seeding of `Movies` table.
+ *
+ * @param {import('sequelize').QueryInterface} queryInterface
+ */
 export async function down(queryInterface) {
 	await queryInterface.bulkDelete('Movies', null, {});
 }

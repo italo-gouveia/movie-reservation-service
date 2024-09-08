@@ -365,34 +365,30 @@
 						}
 					]
 				},
-                {
-                    "name": "Refresh Token",
-                    "request": {
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application/json",
-                                "type": "text"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"refreshToken\":\"<your_refresh_token_here>\"}"
-                        },
-                        "url": {
-                            "raw": "{{baseUrl}}/refresh-token",
-                            "protocol": "http",
-                            "host": [
-                                "{{baseUrl}}"
-                            ],
-                            "port": "3000",
-                            "path": [
-                                "refresh-token"
-                            ]
-                        }
-                    },
-                    "event": [
+				{
+					"name": "Refresh Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"refreshToken\":\"<your_refresh_token_here>\"}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/refresh-token",
+							"protocol": "http",
+							"host": ["{{baseUrl}}"],
+							"port": "3000",
+							"path": ["refresh-token"]
+						}
+					},
+					"event": [
 						{
 							"listen": "test",
 							"script": {
@@ -405,8 +401,8 @@
 							}
 						}
 					],
-                    "response": []
-                }
+					"response": []
+				}
 			]
 		},
 		{

@@ -1,6 +1,10 @@
 'use strict';
 
-/** @type {import('sequelize').Migration} */
+/**
+ * Seed the `Users` table with initial data.
+ *
+ * @type {import('sequelize').Migration}
+ */
 export async function up(queryInterface) {
 	await queryInterface.bulkInsert(
 		'Users',
@@ -25,6 +29,12 @@ export async function up(queryInterface) {
 		{}
 	);
 }
+
+/**
+ * Revert the seeding of `Users` table.
+ *
+ * @param {import('sequelize').QueryInterface} queryInterface
+ */
 export async function down(queryInterface) {
 	await queryInterface.bulkDelete('Users', null, {});
 }

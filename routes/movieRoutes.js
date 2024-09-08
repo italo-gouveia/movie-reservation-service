@@ -1,25 +1,81 @@
 import { Router } from 'express';
-const router = Router();
 import movieController from '../controllers/movieController';
 import { authenticate, authorize } from '../utils/authMiddleware';
 
-// Apply middleware for admin routes
+// Initialize router
+const router = Router();
+
+/**
+ * @middleware authenticate
+ * @middleware authorize(['admin'])
+ * @desc Apply authentication and authorization middleware for admin routes
+ */
 router.use(authenticate);
 router.use(authorize(['admin']));
 
-// Route to add a movie
+/**
+ * @route POST /
+ * @desc Add a new movie
+ * @access Private
+ * @middleware authenticate
+ * @middleware authorize(['admin'])
+ * @param {Object} req - The request object
+ * @param {Object} res - The response object
+ * @param {Function} next - The next middleware function
+ * @returns {Object} - The created movie object
+ */
 router.post('/', movieController.addMovie);
 
-// Route to update a movie by ID
+/**
+ * @route PUT /:id
+ * @desc Update a movie by ID
+ * @access Private
+ * @middleware authenticate
+ * @middleware authorize(['admin'])
+ * @param {Object} req - The request object
+ * @param {Object} res - The response object
+ * @param {Function} next - The next middleware function
+ * @param {string} req.params.id - The ID of the movie to update
+ * @returns {Object} - The updated movie object
+ */
 router.put('/:id', movieController.updateMovie);
 
-// Route to delete a movie by ID
+/**
+ * @route DELETE /:id
+ * @desc Delete a movie by ID
+ * @access Private
+ * @middleware authenticate
+ * @middleware authorize(['admin'])
+ * @param {Object} req - The request object
+ * @param {Object} res - The response object
+ * @param {Function} next - The next middleware function
+ * @param {string} req.params.id - The ID of the movie to delete
+ * @returns {Object} - Confirmation message of deletion
+ */
 router.delete('/:id', movieController.deleteMovie);
 
-// Route to get a movie by ID
+/**
+ * @route GET /:id
+ * @desc Get a movie by ID
+ * @access Public
+ * @param {Object} req - The request object
+ * @param {Object} res - The response object
+ * @param {Function} next - The next middleware function
+ * @param {string} req.params.id - The ID of the movie to retrieve
+ * @returns {Object} - The movie object
+ */
 router.get('/:id', movieController.getMovieById);
 
-// Route to get a list of movies, optionally filtered by genre
+/**
+ * @route GET /
+ * @desc Get a list of movies, optionally filtered by genre
+ * @access Public
+ * @param {Object} req - The request object
+ * @param {Object} res - The response object
+ * @param {Function} next - The next middleware function
+ * @param {string} [req.query.genre] - Optional genre filter
+ * @returns {Array} - List of movies
+ */
 router.get('/', movieController.getMovies);
 
 export default router;
