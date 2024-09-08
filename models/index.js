@@ -1,17 +1,18 @@
-const { Sequelize } = require('sequelize');
-const sequelize = require('../config/sequelize');
-
-const User = require('./user')(sequelize);
-const Showtime = require('./showtime')(sequelize);
-const Seat = require('./seat')(sequelize);
-const Reservation = require('./reservation')(sequelize);
-const Movie = require('./movie')(sequelize);
+import sequelize from '../config/sequelize';
+import User from './user';
+import Showtime from './showtime';
+import Seat from './seat';
+import Reservation from './reservation';
+import Movie from './movie';
 
 // Define associations
 User.hasMany(Reservation, { foreignKey: 'user_id' });
 Reservation.belongsTo(User, { foreignKey: 'user_id' });
 
-Showtime.hasMany(Reservation, { as: 'reservations', foreignKey: 'showtime_id' });
+Showtime.hasMany(Reservation, {
+	as: 'reservations',
+	foreignKey: 'showtime_id',
+});
 Reservation.belongsTo(Showtime, { as: 'showtime', foreignKey: 'showtime_id' });
 
 Seat.hasMany(Reservation, { as: 'reservations', foreignKey: 'seat_id' });
@@ -20,4 +21,4 @@ Reservation.belongsTo(Seat, { as: 'seat', foreignKey: 'seat_id' });
 Movie.hasMany(Showtime, { foreignKey: 'movie_id' });
 Showtime.belongsTo(Movie, { foreignKey: 'movie_id' });
 
-module.exports = { User, Showtime, Seat, Reservation, Movie, sequelize };
+export default { User, Showtime, Seat, Reservation, Movie, sequelize };

@@ -1,7 +1,7 @@
-const express = require('express');
-const router = express.Router();
-const reservationController = require('../controllers/reservationController');
-const { authenticate } = require('../utils/authMiddleware');
+import { Router } from 'express';
+const router = Router();
+import reservationController from '../controllers/reservationController';
+import authenticate from '../utils/authMiddleware';
 
 // Apply authentication middleware
 router.use(authenticate);
@@ -15,4 +15,4 @@ router.get('/', reservationController.getReservations);
 // Route to cancel a reservation by ID
 router.delete('/:id', reservationController.cancelReservation);
 
-module.exports = router;
+export default router;

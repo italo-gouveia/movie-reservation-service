@@ -1,16 +1,19 @@
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+import { hashSync, compareSync } from 'bcryptjs';
+import { sign } from 'jsonwebtoken';
+import process from 'process';
 
 const hashPassword = (password) => {
-    return bcrypt.hashSync(password, 10);
+	return hashSync(password, 10);
 };
 
 const comparePassword = (password, hashedPassword) => {
-    return bcrypt.compareSync(password, hashedPassword);
+	return compareSync(password, hashedPassword);
 };
 
 const generateToken = (user) => {
-    return jwt.sign({ id: user.id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '2h' });
+	return sign({ id: user.id, role: user.role }, process.env.JWT_SECRET, {
+		expiresIn: '2h',
+	});
 };
 
-module.exports = { hashPassword, comparePassword, generateToken };
+export default { hashPassword, comparePassword, generateToken };

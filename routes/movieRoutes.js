@@ -1,7 +1,7 @@
-const express = require('express');
-const router = express.Router();
-const movieController = require('../controllers/movieController');
-const { authenticate, authorize } = require('../utils/authMiddleware');
+import { Router } from 'express';
+const router = Router();
+import movieController from '../controllers/movieController';
+import { authenticate, authorize } from '../utils/authMiddleware';
 
 // Apply middleware for admin routes
 router.use(authenticate);
@@ -22,4 +22,4 @@ router.get('/:id', movieController.getMovieById);
 // Route to get a list of movies, optionally filtered by genre
 router.get('/', movieController.getMovies);
 
-module.exports = router;
+export default router;

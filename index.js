@@ -1,12 +1,13 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const authRoutes = require('./routes/authRoutes');
-const movieRoutes = require('./routes/movieRoutes');
-const reservationRoutes = require('./routes/reservationRoutes');
-const { authenticate, authorize } = require('./utils/authMiddleware');
+import express from 'express';
+import { json } from 'body-parser';
+import authRoutes from './routes/authRoutes';
+import movieRoutes from './routes/movieRoutes';
+import reservationRoutes from './routes/reservationRoutes';
+import { authenticate, authorize } from './utils/authMiddleware';
+import process from 'process';
 
 const app = express();
-app.use(bodyParser.json());
+app.use(json());
 
 app.use('/auth', authRoutes);
 app.use('/movies', authenticate, authorize(['admin']), movieRoutes);

@@ -26,13 +26,8 @@
 						},
 						"url": {
 							"raw": "{{baseUrl}}/auth/signup",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"auth",
-								"signup"
-							]
+							"host": ["{{baseUrl}}"],
+							"path": ["auth", "signup"]
 						}
 					},
 					"response": [
@@ -52,13 +47,8 @@
 								},
 								"url": {
 									"raw": "{{baseUrl}}/auth/signup",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"auth",
-										"signup"
-									]
+									"host": ["{{baseUrl}}"],
+									"path": ["auth", "signup"]
 								}
 							},
 							"status": "Created",
@@ -115,13 +105,8 @@
 						},
 						"url": {
 							"raw": "{{baseUrl}}/auth/signup",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"auth",
-								"signup"
-							]
+							"host": ["{{baseUrl}}"],
+							"path": ["auth", "signup"]
 						}
 					},
 					"response": [
@@ -141,13 +126,8 @@
 								},
 								"url": {
 									"raw": "{{baseUrl}}/auth/signup",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"auth",
-										"signup"
-									]
+									"host": ["{{baseUrl}}"],
+									"path": ["auth", "signup"]
 								}
 							},
 							"status": "Created",
@@ -230,13 +210,8 @@
 						},
 						"url": {
 							"raw": "{{baseUrl}}/auth/login",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"auth",
-								"login"
-							]
+							"host": ["{{baseUrl}}"],
+							"path": ["auth", "login"]
 						}
 					},
 					"response": [
@@ -256,13 +231,8 @@
 								},
 								"url": {
 									"raw": "{{baseUrl}}/auth/login",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"auth",
-										"login"
-									]
+									"host": ["{{baseUrl}}"],
+									"path": ["auth", "login"]
 								}
 							},
 							"status": "OK",
@@ -332,13 +302,8 @@
 						},
 						"url": {
 							"raw": "{{baseUrl}}/auth/login",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"auth",
-								"login"
-							]
+							"host": ["{{baseUrl}}"],
+							"path": ["auth", "login"]
 						}
 					},
 					"response": [
@@ -358,13 +323,8 @@
 								},
 								"url": {
 									"raw": "{{baseUrl}}/auth/login",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"auth",
-										"login"
-									]
+									"host": ["{{baseUrl}}"],
+									"path": ["auth", "login"]
 								}
 							},
 							"status": "OK",
@@ -452,12 +412,8 @@
 						],
 						"url": {
 							"raw": "{{baseUrl}}/movies?genre={{genre}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"movies"
-							],
+							"host": ["{{baseUrl}}"],
+							"path": ["movies"],
 							"query": [
 								{
 									"key": "genre",
@@ -480,12 +436,8 @@
 								],
 								"url": {
 									"raw": "{{baseUrl}}/movies?genre={{genre}}",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"movies"
-									],
+									"host": ["{{baseUrl}}"],
+									"path": ["movies"],
 									"query": [
 										{
 											"key": "genre",
@@ -574,13 +526,8 @@
 						],
 						"url": {
 							"raw": "{{baseUrl}}/movies/2",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"movies",
-								"2"
-							]
+							"host": ["{{baseUrl}}"],
+							"path": ["movies", "2"]
 						}
 					},
 					"response": [
@@ -597,13 +544,8 @@
 								],
 								"url": {
 									"raw": "{{baseUrl}}/movies/2",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"movies",
-										"2"
-									]
+									"host": ["{{baseUrl}}"],
+									"path": ["movies", "2"]
 								}
 							},
 							"status": "OK",
@@ -693,12 +635,8 @@
 						},
 						"url": {
 							"raw": "{{baseUrl}}/movies",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"movies"
-							]
+							"host": ["{{baseUrl}}"],
+							"path": ["movies"]
 						}
 					},
 					"response": [
@@ -724,12 +662,8 @@
 								},
 								"url": {
 									"raw": "{{baseUrl}}/movies",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"movies"
-									]
+									"host": ["{{baseUrl}}"],
+									"path": ["movies"]
 								}
 							},
 							"status": "Bad Request",
@@ -790,12 +724,8 @@
 								},
 								"url": {
 									"raw": "{{baseUrl}}/movies",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"movies"
-									]
+									"host": ["{{baseUrl}}"],
+									"path": ["movies"]
 								}
 							},
 							"status": "Created",
@@ -886,13 +816,8 @@
 						},
 						"url": {
 							"raw": "{{baseUrl}}/movies/3",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"movies",
-								"3"
-							]
+							"host": ["{{baseUrl}}"],
+							"path": ["movies", "3"]
 						}
 					},
 					"response": [
@@ -918,13 +843,8 @@
 								},
 								"url": {
 									"raw": "{{baseUrl}}/movies/3",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"movies",
-										"3"
-									]
+									"host": ["{{baseUrl}}"],
+									"path": ["movies", "3"]
 								}
 							},
 							"status": "OK",
@@ -1002,13 +922,8 @@
 						],
 						"url": {
 							"raw": "{{baseUrl}}/movies/3",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"movies",
-								"3"
-							]
+							"host": ["{{baseUrl}}"],
+							"path": ["movies", "3"]
 						}
 					},
 					"response": [
@@ -1025,13 +940,8 @@
 								],
 								"url": {
 									"raw": "{{baseUrl}}/movies/3",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"movies",
-										"3"
-									]
+									"host": ["{{baseUrl}}"],
+									"path": ["movies", "3"]
 								}
 							},
 							"status": "No Content",
@@ -1118,13 +1028,8 @@
 						},
 						"url": {
 							"raw": "{{baseUrl}}/reservations/reserve",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"reservations",
-								"reserve"
-							]
+							"host": ["{{baseUrl}}"],
+							"path": ["reservations", "reserve"]
 						}
 					},
 					"response": [
@@ -1150,13 +1055,8 @@
 								},
 								"url": {
 									"raw": "{{baseUrl}}/reservations/reserve",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"reservations",
-										"reserve"
-									]
+									"host": ["{{baseUrl}}"],
+									"path": ["reservations", "reserve"]
 								}
 							},
 							"status": "Created",
@@ -1239,12 +1139,8 @@
 						],
 						"url": {
 							"raw": "{{baseUrl}}/reservations",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"reservations"
-							]
+							"host": ["{{baseUrl}}"],
+							"path": ["reservations"]
 						}
 					},
 					"response": [
@@ -1261,12 +1157,8 @@
 								],
 								"url": {
 									"raw": "{{baseUrl}}/reservations",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"reservations"
-									]
+									"host": ["{{baseUrl}}"],
+									"path": ["reservations"]
 								}
 							},
 							"status": "OK",
@@ -1344,13 +1236,8 @@
 						],
 						"url": {
 							"raw": "{{baseUrl}}/reservations/2",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"reservations",
-								"2"
-							]
+							"host": ["{{baseUrl}}"],
+							"path": ["reservations", "2"]
 						}
 					},
 					"response": [
@@ -1367,13 +1254,8 @@
 								],
 								"url": {
 									"raw": "{{baseUrl}}/reservations/2",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"reservations",
-										"2"
-									]
+									"host": ["{{baseUrl}}"],
+									"path": ["reservations", "2"]
 								}
 							},
 							"status": "OK",
@@ -1461,12 +1343,8 @@
 						],
 						"url": {
 							"raw": "{{baseUrl}}/movies?genre={{genre}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"movies"
-							],
+							"host": ["{{baseUrl}}"],
+							"path": ["movies"],
 							"query": [
 								{
 									"key": "genre",
@@ -1489,12 +1367,8 @@
 								],
 								"url": {
 									"raw": "{{baseUrl}}/movies?genre={{genre}}",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"movies"
-									],
+									"host": ["{{baseUrl}}"],
+									"path": ["movies"],
 									"query": [
 										{
 											"key": "genre",
@@ -1583,13 +1457,8 @@
 						],
 						"url": {
 							"raw": "{{baseUrl}}/movies/{{movieId}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"movies",
-								"{{movieId}}"
-							]
+							"host": ["{{baseUrl}}"],
+							"path": ["movies", "{{movieId}}"]
 						}
 					},
 					"response": [
@@ -1606,13 +1475,8 @@
 								],
 								"url": {
 									"raw": "{{baseUrl}}/movies/{{movieId}}",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"movies",
-										"{{movieId}}"
-									]
+									"host": ["{{baseUrl}}"],
+									"path": ["movies", "{{movieId}}"]
 								}
 							},
 							"status": "OK",
@@ -1702,12 +1566,8 @@
 						},
 						"url": {
 							"raw": "{{baseUrl}}/movies",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"movies"
-							]
+							"host": ["{{baseUrl}}"],
+							"path": ["movies"]
 						}
 					},
 					"response": []
@@ -1762,13 +1622,8 @@
 						},
 						"url": {
 							"raw": "{{baseUrl}}/movies/{{movieId}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"movies",
-								"{{movieId}}"
-							]
+							"host": ["{{baseUrl}}"],
+							"path": ["movies", "{{movieId}}"]
 						}
 					},
 					"response": []
@@ -1810,13 +1665,8 @@
 						],
 						"url": {
 							"raw": "{{baseUrl}}/movies/{{movieId}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"movies",
-								"{{movieId}}"
-							]
+							"host": ["{{baseUrl}}"],
+							"path": ["movies", "{{movieId}}"]
 						}
 					},
 					"response": []
@@ -1870,13 +1720,8 @@
 						},
 						"url": {
 							"raw": "{{baseUrl}}/reservations/reserve",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"reservations",
-								"reserve"
-							]
+							"host": ["{{baseUrl}}"],
+							"path": ["reservations", "reserve"]
 						}
 					},
 					"response": []
@@ -1923,12 +1768,8 @@
 						],
 						"url": {
 							"raw": "{{baseUrl}}/reservations",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"reservations"
-							]
+							"host": ["{{baseUrl}}"],
+							"path": ["reservations"]
 						}
 					},
 					"response": []
@@ -1970,13 +1811,8 @@
 						],
 						"url": {
 							"raw": "{{baseUrl}}/reservations/{{reservationId}}",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"reservations",
-								"{{reservationId}}"
-							]
+							"host": ["{{baseUrl}}"],
+							"path": ["reservations", "{{reservationId}}"]
 						}
 					},
 					"response": []
@@ -2004,9 +1840,7 @@
 					"script": {
 						"type": "text/javascript",
 						"packages": {},
-						"exec": [
-							""
-						]
+						"exec": [""]
 					}
 				}
 			]
