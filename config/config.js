@@ -19,14 +19,14 @@ import process from 'process';
  *   - {string} dialect - The database dialect (e.g., 'postgres').
  */
 const getConfig = (envPrefix) => {
-	return {
-		username: process.env[`${envPrefix}_DB_USER`] || 'defaultUser',
-		password: process.env[`${envPrefix}_DB_PASSWORD`] || 'defaultPassword',
-		database: process.env[`${envPrefix}_DB_NAME`] || 'defaultDatabase',
-		host: process.env[`${envPrefix}_DB_HOST`] || 'localhost',
-		port: parseInt(process.env[`${envPrefix}_DB_PORT`] || '5432', 10),
-		dialect: 'postgres',
-	};
+    return {
+        username: process.env[`${envPrefix}_USER`] || 'defaultUser',
+        password: process.env[`${envPrefix}_PASSWORD`] || 'defaultPassword',
+        database: process.env[`${envPrefix}_NAME`] || 'defaultDatabase',
+        host: process.env[`${envPrefix}_HOST`] || 'localhost',
+        port: parseInt(process.env[`${envPrefix}_PORT`] || '5432', 10),
+        dialect: 'postgres',
+    };
 };
 
 /**

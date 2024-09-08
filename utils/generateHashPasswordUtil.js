@@ -1,5 +1,5 @@
 import { genSaltSync, hashSync } from 'bcryptjs';
-import { info, warn, error as _error } from '../logger'; // Import the logger
+import { info, warn, error as _error } from '../logger.js'; // Import the logger
 
 /**
  * Generates a hashed password using bcrypt.

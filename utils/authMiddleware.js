@@ -2,8 +2,9 @@
  * @module authMiddleware
  */
 
-import { verifyToken, getUserByToken } from '../services/authService';
-import { info, warn, error as _error } from '../logger'; // Import the logger
+import authService from '../services/authService.js'; // Import the default export
+const { verifyToken, getUserByToken } = authService; // Destructure functions
+import { info, warn, error as _error } from '../utils/logger.js'; // Import the logger
 
 /**
  * Middleware to authenticate users based on JWT in the request headers.

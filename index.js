@@ -1,27 +1,59 @@
 import express from 'express';
-import { json } from 'body-parser';
+import pkg from 'body-parser';
+const { json } = pkg;
 import helmet from 'helmet';
-import authRoutes from './routes/authRoutes';
-import movieRoutes from './routes/movieRoutes';
-import reservationRoutes from './routes/reservationRoutes';
-import { authenticate, authorize } from './utils/authMiddleware';
-import { info, warn, error as _error } from '../logger';
 import process from 'process';
 import { v4 as uuidv4 } from 'uuid';
+
+import { createClient } from 'redis';
 import rateLimit from 'express-rate-limit';
-import RedisStore from 'rate-limit-redis';
-import redis from 'redis';
-import sanitizeInputs from './middleware/sanitizeInputs';
+import RateLimitRedisStore from 'rate-limit-redis';
+
+import swaggerJsdoc from 'swagger-jsdoc';
+import swaggerUi from 'swagger-ui-express';
+
+import authRoutes from './routes/authRoutes.js';
+import movieRoutes from './routes/movieRoutes.js';
+import reservationRoutes from './routes/reservationRoutes.js';
+
+import authMiddleware from './utils/authMiddleware.js'; // Import the default export
+const { authenticate, authorize } = authMiddleware;
+import sanitizeInputs from './utils/sanitizeMiddleware.js';
+import { info, warn, error as _error } from './utils/logger.js';
+
 
 const app = express();
+
+const swaggerDefinition = {
+    openapi: '3.0.0',
+    info: {
+      title: 'API Documentation',
+      version: '1.0.0',
+      description: 'A description of the API',
+    },
+    servers: [
+      {
+        url: 'http://localhost:3000',
+        description: 'Local server',
+      },
+    ],
+};
+
+const options = {
+    swaggerDefinition,
+    apis: ['./routes/*.js'], // Path to the API docs
+};
+
+const specs = swaggerJsdoc(options);
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
 
 /**
  * Creates a Redis client instance.
  * @type {redis.RedisClient}
  */
-const redisClient = redis.createClient({
-	host: process.env.REDIS_HOST || 'localhost',
-	port: process.env.REDIS_PORT || 6379,
+const redisClient = createClient({
+    url: `redis://${process.env.REDIS_HOST || 'localhost'}:${process.env.REDIS_PORT || 6379}`
 });
 
 /**
@@ -29,7 +61,12 @@ const redisClient = redis.createClient({
  * @param {Error} err - The error object.
  */
 redisClient.on('error', (err) => {
-	_error('Redis error', { message: err.message, stack: err.stack });
+    _error('Redis error', { message: err.message, stack: err.stack });
+});
+
+
+redisClient.connect().catch(err => {
+    _error('Error connecting to Redis', { message: err.message, stack: err.stack });
 });
 
 /**
@@ -38,14 +75,14 @@ redisClient.on('error', (err) => {
  * @type {import('express-rate-limit').RateLimit}
  */
 const apiLimiter = rateLimit({
-	store: new RedisStore({
-		client: redisClient,
-		expiry: 15 * 60,
-	}),
-	windowMs: 15 * 60 * 1000,
-	max: 100,
-	message: 'Too many requests from this IP, please try again later.',
-	headers: true,
+    store: new RateLimitRedisStore({
+        client: redisClient,
+        expiry: 15 * 60,
+    }),
+    windowMs: 15 * 60 * 1000,
+    max: 100,
+    message: 'Too many requests from this IP, please try again later.',
+    headers: true,
 });
 
 // Apply rate limiting to all API routes

@@ -3,8 +3,8 @@
  */
 
 import redis from 'redis';
-import { Movie } from '../models';
-import { info, warn, error as _error } from '../logger';
+import Movie from '../models/movie.js';
+import { info, warn, error as _error } from '../utils/logger.js';
 import { promisify } from 'util';
 
 // Configure Redis client

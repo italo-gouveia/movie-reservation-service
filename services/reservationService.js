@@ -2,8 +2,10 @@
  * @module reservationService
  */
 
-import { Reservation, Seat, Showtime } from '../models';
-import { info, warn, error as _error } from '../logger';
+import Reservation from '../models/reservation.js';
+import Seat from '../models/seat.js';
+import Showtime from '../models/showtime.js';
+import { info, warn, error as _error } from '../utils/logger.js';
 
 /**
  * Reserves seats for a given showtime and user.

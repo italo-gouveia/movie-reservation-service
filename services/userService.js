@@ -2,9 +2,9 @@
  * @module userService
  */
 
-import authUtils from '../utils/authUtils';
-import { User } from '../models';
-import { info, warn, error as _error } from '../logger';
+import authUtils from '../utils/authUtils.js';
+import User from '../models/user.js';
+import { info, warn, error as _error } from '../utils/logger.js';
 
 /**
  * Creates a new user.

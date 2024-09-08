@@ -1,7 +1,7 @@
 import { body, param, validationResult } from 'express-validator';
 import xss from 'xss';
-import reservationService from '../services/reservationService';
-import { error as _error } from '../logger'; // Import the logger
+import reservationService from '../services/reservationService.js';
+import { error as _error } from '../utils/logger.js'; // Import the logger
 
 /**
  * Sanitize input using xss library.

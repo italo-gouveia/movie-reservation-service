@@ -2,10 +2,12 @@
  * @module authUtils
  */
 
-import { hashSync, compareSync } from 'bcryptjs';
-import { sign, verify } from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';  // Import the CommonJS module using default import
+const { hashSync, compareSync } = bcrypt;  // Destructure the named exports from the default import
+import jwt from 'jsonwebtoken';  // Import the CommonJS module using default import
+const { sign, verify } = jwt;  // Destructure the named exports from the default import
 import process from 'process';
-import { info, warn, error as _error } from '../logger';
+import { info, warn, error as _error } from '../utils/logger.js';
 
 /**
  * Hashes a password using bcrypt.

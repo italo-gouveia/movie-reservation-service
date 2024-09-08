@@ -1,7 +1,7 @@
 import { body, param, query, validationResult } from 'express-validator';
 import xss from 'xss';
-import movieService from '../services/movieService';
-import { error as _error } from '../logger'; // Import the logger
+import movieService from '../services/movieService.js';
+import { error as _error } from '../utils/logger.js'; // Import the logger
 
 /**
  * Sanitize input using xss library.

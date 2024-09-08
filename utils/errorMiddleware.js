@@ -1,4 +1,4 @@
-import logger from '../utils/logger';
+import logger from '../utils/logger.js';
 
 /**
  * Centralized error-handling middleware for Express.

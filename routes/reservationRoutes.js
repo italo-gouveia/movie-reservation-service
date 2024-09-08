@@ -1,6 +1,7 @@
 import { Router } from 'express';
-import reservationController from '../controllers/reservationController';
-import { authenticate } from '../utils/authMiddleware'; // Ensure you're importing the named export correctly
+import reservationController from '../controllers/reservationController.js';
+import authMiddleware from '../utils/authMiddleware.js'; // Import the default export
+const { authenticate } = authMiddleware;
 
 const router = Router();
 

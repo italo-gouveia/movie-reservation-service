@@ -1,6 +1,7 @@
 import { Router } from 'express';
-import movieController from '../controllers/movieController';
-import { authenticate, authorize } from '../utils/authMiddleware';
+import movieController from '../controllers/movieController.js';
+import authMiddleware from '../utils/authMiddleware.js';
+const { authenticate, authorize } = authMiddleware;
 
 // Initialize router
 const router = Router();

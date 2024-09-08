@@ -1,6 +1,6 @@
 import { Sequelize } from 'sequelize';
-import { development, test, production } from './config';
-import logger from '../utils/logger'; // Import the logger
+import { development, test, production } from './config.js';
+import { info, warn, error as _error } from '../utils/logger.js';
 
 /**
  * @typedef {Object} DbConfig
@@ -41,7 +41,7 @@ const sequelize = new Sequelize(
 		host: dbConfig.host,
 		port: dbConfig.port,
 		dialect: dbConfig.dialect,
-		logging: (msg) => logger.info(msg), // Log queries using your logger
+		logging: (msg) => info(msg), // Log queries using your logger
 		pool: {
 			max: 5, // Maximum number of connections in pool
 			min: 0, // Minimum number of connections in pool
@@ -62,9 +62,9 @@ const sequelize = new Sequelize(
 (async () => {
 	try {
 		await sequelize.authenticate();
-		logger.info('Connection has been established successfully.');
+		info('Connection has been established successfully.');
 	} catch (error) {
-		logger.error('Unable to connect to the database:', {
+		error('Unable to connect to the database:', {
 			message: error.message,
 			stack: error.stack,
 		});

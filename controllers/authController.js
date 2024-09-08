@@ -2,9 +2,9 @@
  * @module authController
  */
 
-import authUtils from '../utils/authUtils';
-import userService from '../services/userService';
-import { info, warn, error as _error } from '../logger';
+import authUtils from '../utils/authUtils.js';
+import userService from '../services/userService.js';
+import { info, warn, error as _error } from '../utils/logger.js';
 import { body, validationResult } from 'express-validator';
 import xss from 'xss';
 
@@ -212,4 +212,4 @@ const refreshToken = async (req, res) => {
 	}
 };
 
-export default { signUp, login, refreshToken };
+export { signUp, login, refreshToken };

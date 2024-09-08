@@ -2,10 +2,12 @@
  * @module authService
  */
 
-import { hashSync, compareSync } from 'bcryptjs';
-import { sign, verify } from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';  // Import the CommonJS module using default import
+const { hashSync, compareSync } = bcrypt;  // Destructure the named exports from the default import
+import jwt from 'jsonwebtoken';  // Import the CommonJS module using default import
+const { sign, verify } = jwt;  // Destructure the named exports from the default import
 import process from 'process';
-import { info, warn, error as _error } from '../logger';
+import { info, warn, error as _error } from '../utils/logger.js';
 
 /**
  * Hashes a plain text password.
@@ -155,6 +157,25 @@ const verifyRefreshToken = (token) => {
 	}
 };
 
+/**
+ * Retrieves a user based on the token.
+ * @param {string} token - The token to extract the user ID from.
+ * @returns {Promise<Object|null>} - The user object or null if not found.
+ */
+const getUserByToken = async (token) => {
+    try {
+      const decoded = verifyToken(token); // Assuming verifyToken decodes the token
+      const user = await User.findByPk(decoded.id);
+      return user;
+    } catch (error) {
+      _error('Error retrieving user by token', {
+        message: error.message,
+        stack: error.stack,
+      });
+      return null;
+    }
+};
+
 export default {
 	hashPassword,
 	comparePassword,
@@ -162,4 +183,5 @@ export default {
 	generateRefreshToken,
 	verifyToken,
 	verifyRefreshToken,
+    getUserByToken
 };

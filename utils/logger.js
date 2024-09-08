@@ -55,4 +55,6 @@ const logger = createLogger({
 	],
 });
 
-export default logger;
+export const info = (...args) => logger.info(...args);
+export const warn = (...args) => logger.warn(...args);
+export const error = (...args) => logger.error(...args);
