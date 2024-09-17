@@ -1,5 +1,6 @@
 import { Sequelize } from 'sequelize';
-import { development, test, production } from './config.js';
+import config from './config.js'; // Adjust the path according to your file structure
+const { development, test, production } = config;
 import { info, warn, error as _error } from '../utils/logger.js';
 
 /**
@@ -63,10 +64,10 @@ const sequelize = new Sequelize(
 	try {
 		await sequelize.authenticate();
 		info('Connection has been established successfully.');
-	} catch (error) {
-		error('Unable to connect to the database:', {
-			message: error.message,
-			stack: error.stack,
+	} catch (err) {
+		_error('Unable to connect to the database:', {
+			message: err.message,
+			stack: err.stack,
 		});
 		process.exit(1); // Exit the process with an error code
 	}

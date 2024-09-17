@@ -1,7 +1,6 @@
+// config/config.js
 import dotenv from 'dotenv';
 dotenv.config();
-
-import process from 'process';
 
 /**
  * Retrieves database configuration settings based on the provided environment prefix.
@@ -20,47 +19,19 @@ import process from 'process';
  */
 const getConfig = (envPrefix) => {
     return {
-        username: process.env[`${envPrefix}_USER`] || 'defaultUser',
-        password: process.env[`${envPrefix}_PASSWORD`] || 'defaultPassword',
-        database: process.env[`${envPrefix}_NAME`] || 'defaultDatabase',
-        host: process.env[`${envPrefix}_HOST`] || 'localhost',
+        username: process.env[`${envPrefix}_USER`] || 'postgres',
+        password: process.env[`${envPrefix}_PASSWORD`] || 'your_password',
+        database: process.env[`${envPrefix}_NAME`] || 'your_database_name',
+        host: process.env[`${envPrefix}_HOST`] || 'postgres',
         port: parseInt(process.env[`${envPrefix}_PORT`] || '5432', 10),
         dialect: 'postgres',
     };
 };
 
-/**
- * Configuration for the development environment.
- * @type {Object}
- * @property {string} username - The database username for development.
- * @property {string} password - The database password for development.
- * @property {string} database - The database name for development.
- * @property {string} host - The database host for development.
- * @property {number} port - The database port for development.
- * @property {string} dialect - The database dialect (e.g., 'postgres').
- */
-export const development = getConfig('DEV');
+const config = {
+    development: getConfig('DEV'),
+    test: getConfig('TEST'),
+    production: getConfig('PROD'),
+};
 
-/**
- * Configuration for the test environment.
- * @type {Object}
- * @property {string} username - The database username for testing.
- * @property {string} password - The database password for testing.
- * @property {string} database - The database name for testing.
- * @property {string} host - The database host for testing.
- * @property {number} port - The database port for testing.
- * @property {string} dialect - The database dialect (e.g., 'postgres').
- */
-export const test = getConfig('TEST');
-
-/**
- * Configuration for the production environment.
- * @type {Object}
- * @property {string} username - The database username for production.
- * @property {string} password - The database password for production.
- * @property {string} database - The database name for production.
- * @property {string} host - The database host for production.
- * @property {number} port - The database port for production.
- * @property {string} dialect - The database dialect (e.g., 'postgres').
- */
-export const production = getConfig('PROD');
+export default config;

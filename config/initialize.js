@@ -1,5 +1,5 @@
-import logger from '../utils/logger';
-import sequelize from './config'; // Ensure this imports your Sequelize instance
+import {info, error as _error} from '../utils/logger.js';
+import sequelize from './sequelize.js'; // Ensure this imports your Sequelize instance
 
 /**
  * Initializes the database by synchronizing the Sequelize models.
@@ -16,11 +16,11 @@ const initializeDatabase = async () => {
 	try {
 		// Use caution with force: true as it drops and recreates all tables
 		await sequelize.sync({ force: true }); // Use migrations for production environments
-		logger.info('Database synchronized successfully');
-	} catch (error) {
-		logger.error('Error initializing the database:', {
-			message: error.message,
-			stack: error.stack,
+		info('Database synchronized successfully');
+	} catch (err) {
+		_error('Error initializing the database:', {
+			message: err.message,
+			stack: err.stack,
 		});
 	}
 };

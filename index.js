@@ -5,9 +5,9 @@ import helmet from 'helmet';
 import process from 'process';
 import { v4 as uuidv4 } from 'uuid';
 
-import { createClient } from 'redis';
+/*import { createClient } from 'redis';
 import rateLimit from 'express-rate-limit';
-import RateLimitRedisStore from 'rate-limit-redis';
+import RateLimitRedisStore from 'rate-limit-redis';*/
 
 import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
@@ -52,29 +52,29 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
  * Creates a Redis client instance.
  * @type {redis.RedisClient}
  */
-const redisClient = createClient({
+/*const redisClient = createClient({
     url: `redis://${process.env.REDIS_HOST || 'localhost'}:${process.env.REDIS_PORT || 6379}`
-});
+});*/
 
 /**
  * Handles Redis client errors.
  * @param {Error} err - The error object.
  */
-redisClient.on('error', (err) => {
+/*redisClient.on('error', (err) => {
     _error('Redis error', { message: err.message, stack: err.stack });
 });
 
 
 redisClient.connect().catch(err => {
     _error('Error connecting to Redis', { message: err.message, stack: err.stack });
-});
+});*/
 
 /**
  * Configures rate limiting middleware for API requests.
  * Limits the number of requests from a single IP address.
  * @type {import('express-rate-limit').RateLimit}
  */
-const apiLimiter = rateLimit({
+/*const apiLimiter = rateLimit({
     store: new RateLimitRedisStore({
         client: redisClient,
         expiry: 15 * 60,
@@ -83,10 +83,10 @@ const apiLimiter = rateLimit({
     max: 100,
     message: 'Too many requests from this IP, please try again later.',
     headers: true,
-});
+});*/
 
 // Apply rate limiting to all API routes
-app.use(apiLimiter);
+//app.use(apiLimiter);
 
 /**
  * Middleware to sanitize user inputs globally or on specific routes.
