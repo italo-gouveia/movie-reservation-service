@@ -51,6 +51,8 @@ Movie.init(
   {
     sequelize,
     modelName: 'Movie',
+    tableName: 'Movies',
+    timestamps: true,
   }
 );
 

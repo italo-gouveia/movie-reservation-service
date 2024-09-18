@@ -36,6 +36,8 @@ Seat.init(
   {
     sequelize,
     modelName: 'Seat',
+    tableName: 'Seats',
+    timestamps: true,
   }
 );
 

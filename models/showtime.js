@@ -40,6 +40,8 @@ Showtime.init(
   {
     sequelize,
     modelName: 'Showtime',
+    tableName: 'Showtimes',
+    timestamps: true,
   }
 );
 
